@@ -55,10 +55,11 @@
           <td>{{ pessoa.nome }}</td>
           <td>{{ pessoa.sobrenome }}</td>
           <td>{{ pessoa.cpf }}</td>
-          <td>{{ pessoa.fk_status }}</td>
+          <td>{{ pessoa.status.descricao }}</td>
           <td>{{ pessoa.data_cadastro }}</td>
           <td>
             <button class="btn btn-primary mr-2" (click)="editar(pessoa)">Editar</button>
+            <button class="btn btn-primary mr-2" (click)="detalhes(pessoa)">Detalhes</button>
             <button class="btn btn-danger" (click)="excluir(pessoa)">Excluir</button>
           </td>
         </tr>

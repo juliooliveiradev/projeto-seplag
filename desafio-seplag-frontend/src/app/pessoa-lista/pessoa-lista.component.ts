@@ -4,6 +4,8 @@ import { PessoaService } from '../pessoa.service';
 import { Status } from '../models/status.model';
 import { StatusService } from '../status.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-pessoa-lista',
@@ -16,14 +18,14 @@ export class PessoaListaComponent implements OnInit {
     nome: '',
     sobrenome: '',
     cpf: '',
-    statusId: null, // Adiciona a propriedade para armazenar o ID do status selecionado
+    status: null, // Adiciona a propriedade para armazenar o ID do status selecionado
     dataInicio: null,
     dataFim: null
   };
   statusList: any[] = []; 
   pessoaEmEdicao: Pessoa | null = null;
 
-  constructor(private pessoaService: PessoaService, private statusService: StatusService) { }
+  constructor(private pessoaService: PessoaService, private statusService: StatusService,private router: Router) { }
 
   ngOnInit(): void {
     this.carregarPessoas();
@@ -50,7 +52,7 @@ export class PessoaListaComponent implements OnInit {
       nome: '',
       sobrenome: '',
       cpf: '',
-      statusId: null,
+      status: null,
       dataInicio: null,
       dataFim: null
     };
@@ -58,12 +60,15 @@ export class PessoaListaComponent implements OnInit {
   }
 
   novo(): void {
-    // Instanciar uma nova pessoa com valores padrão ou vazios
-    this.pessoaEmEdicao = new Pessoa(0, '', '', '',0,new Date());
+    this.router.navigate(['/criar-pessoa']);
   }
 
   editar(pessoa: Pessoa): void {
-    this.pessoaEmEdicao = { ...pessoa }; // Copiar os dados da pessoa para evitar alterações diretamente na lista
+    this.router.navigate(['/editar-pessoa', pessoa.id]);
+  }
+  
+  detalhes(pessoa: Pessoa): void {
+    this.router.navigate(['/detalhes-pessoa', pessoa.id]);
   }
 
   salvarPessoa(form: NgForm): void {

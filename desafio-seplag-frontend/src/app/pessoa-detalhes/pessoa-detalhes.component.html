@@ -1,1 +1,12 @@
-<p>pessoa-detalhes works!</p>
+<div class="pessoa-details">
+    <h2>Detalhes da Pessoa</h2>
+    <div>
+      <p><strong>Nome:</strong> {{ pessoa?.nome }}</p>
+      <p><strong>Sobrenome:</strong> {{ pessoa?.sobrenome }}</p>
+      <p><strong>CPF:</strong> {{ pessoa?.cpf }}</p>
+      <p><strong>Status:</strong> {{ pessoa?.status?.descricao }}</p>
+      <p><strong>Data de Cadastro:</strong> {{ pessoa?.data_cadastro| date }}</p>
+    </div>
+    <button (click)="voltar()">Voltar</button>
+  </div>
+  

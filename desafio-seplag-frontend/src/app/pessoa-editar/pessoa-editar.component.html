@@ -1,1 +1,21 @@
-<p>pessoa-editar works!</p>
+<h2>Editar Pessoa</h2>
+
+<form (ngSubmit)="salvarEdicao()" #editarForm="ngForm">
+  <div class="form-group">
+    <label for="nome">Nome:</label>
+    <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="pessoa.nome" required>
+  </div>
+  <div class="form-group">
+    <label for="sobrenome">Sobrenome:</label>
+    <input type="text" class="form-control" id="sobrenome" name="sobrenome" [(ngModel)]="pessoa.sobrenome" required>
+  </div>
+  <div class="form-group">
+    <label for="cpf">CPF:</label>
+    <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="pessoa.cpf" required>
+  </div>
+  <!-- Adicione aqui os campos para outros dados da pessoa -->
+  
+  <button type="submit" class="btn btn-primary">Salvar</button>
+  <button type="button" class="btn btn-secondary" (click)="cancelarEdicao()">Cancelar</button>
+</form>
+

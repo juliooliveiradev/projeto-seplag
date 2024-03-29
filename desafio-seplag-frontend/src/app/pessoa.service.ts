@@ -7,13 +7,17 @@ import { Pessoa } from './models/pessoa.model';
   providedIn: 'root'
 })
 export class PessoaService {
-  apiUrl = 'http://localhost:3000/pessoas'; // Atualize com sua URL de backend
+  apiUrl = 'http://localhost:8080/pessoas'; // Atualize com sua URL de backend
 
   constructor(private http: HttpClient) { }
 
   // Métodos CRUD
   getAll(): Observable<Pessoa[]> {
     return this.http.get<Pessoa[]>(this.apiUrl);
+  }
+
+  getById(id: number): Observable<Pessoa> {
+    return this.http.get<Pessoa>(`${this.apiUrl}/${id}`);
   }
 
   create(pessoa: Pessoa): Observable<Pessoa> {
