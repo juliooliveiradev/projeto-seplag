@@ -1,0 +1,52 @@
+/* Estilos para o formulário de criação de pessoa */
+.create-person-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .create-person-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .create-person-form label {
+    font-weight: bold;
+  }
+  
+  .create-person-form input[type="text"],
+  .create-person-form input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+  }
+  
+  .create-person-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  .create-person-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .create-person-form button:hover {
+    background-color: #0056b3;
+  }
+  
