@@ -1,0 +1,50 @@
+<div class="list row">
+    <div class="col-md-8">
+        <form [formGroup]="filtroForm" (ngSubmit)="filtrar()">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nome" formControlName="nome">
+            <input type="text" class="form-control" placeholder="Sobrenome" formControlName="sobrenome">
+            <input type="text" class="form-control" placeholder="CPF" formControlName="cpf">
+            <select class="form-control" formControlName="statusDescricao">
+              <option value="">Selecione o Status</option>
+              <option *ngFor="let status of statusOptions" [value]="status.descricao">{{ status.descricao }}</option>
+            </select>
+            <input type="date" class="form-control" placeholder="Data de Início" formControlName="dataInicio">
+            <input type="date" class="form-control" placeholder="Data Fim" formControlName="dataFim">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    <div class="col-md-6">
+      <h4>Tutorials List</h4>
+      <ul class="list-group">
+        @for (pessoa of pessoas; track pessoa.id; let i = $index) {
+        <li
+          class="list-group-item"
+          [class.active]="i == currentIndex"
+          (click)="setActivePessoa(pessoa, i)"
+        >
+          {{ pessoa.nome }}
+          {{ pessoa.sobrenome }}
+          {{ pessoa.cpf }}
+          {{ pessoa.status?.descricao }}
+          {{ pessoa.data_cadastro }}
+        </li>
+        }
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllPessoas()">
+        Remove All
+      </button>
+    </div>
+    <div class="col-md-6">
+      <app-pessoa-detalhes
+        [viewMode]="true"
+        [currentPessoa]="currentPessoa"
+      >
+      </app-pessoa-detalhes>
+    </div>
+  </div>
+  

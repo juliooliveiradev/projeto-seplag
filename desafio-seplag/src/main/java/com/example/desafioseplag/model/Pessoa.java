@@ -3,6 +3,8 @@ package com.example.desafioseplag.model;
 import jakarta.persistence.Table;
 
 import  jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -23,6 +25,8 @@ public class Pessoa {
     @JoinColumn(name = "fk_status")
     private Status status;
 
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime dataCadastro;
 
     public Long getId() {

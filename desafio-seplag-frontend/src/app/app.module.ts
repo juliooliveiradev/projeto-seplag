@@ -1,30 +1,32 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PessoaListaComponent } from './pessoa-lista/pessoa-lista.component';
-import { PessoaCriarComponent } from './pessoa-criar/pessoa-criar.component';
-import { PessoaEditarComponent } from './pessoa-editar/pessoa-editar.component';
-import { PessoaDetalhesComponent } from './pessoa-detalhes/pessoa-detalhes.component';
+import { PessoaCriarComponent } from './components/pessoa-criar/pessoa-criar.component';
+import { PessoaDetalhesComponent } from './components/pessoa-detalhes/pessoa-detalhes.component';
+import { PessoaEditarComponent } from './components/pessoa-editar/pessoa-editar.component';
+import { PessoaListaComponent } from './components/pessoa-lista/pessoa-lista.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PessoaListaComponent,
     PessoaCriarComponent,
+    PessoaDetalhesComponent,
     PessoaEditarComponent,
-    PessoaDetalhesComponent
+    PessoaListaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [
-    provideClientHydration()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

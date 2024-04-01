@@ -1,0 +1,55 @@
+<div>
+    <div class="submit-form">
+      @if (!submitted) {
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nome"
+          required
+          [(ngModel)]="pessoa.nome"
+          name="nome"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="sobrenome">Sobrenome</label>
+        <input
+          class="form-control"
+          id="sobrenome"
+          required
+          [(ngModel)]="pessoa.sobrenome"
+          name="sobrenome"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cpf">Cpf</label>
+        <input
+          class="form-control"
+          id="cpf"
+          required
+          [(ngModel)]="pessoa.cpf"
+          name="cpf"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cpf">Status</label>
+      <select class="form-control" id="status" required [(ngModel)]="pessoa.status" name="status">
+        <option *ngFor="let status of statusList" [ngValue]="status">{{ status.descricao }}</option>
+      </select>
+      </div>
+
+      
+
+  
+      <button (click)="savePessoa()" class="btn btn-success">Salvar</button>
+      } @else {
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newPessoa()">Novo</button>
+      }
+    </div>
+  </div>
+  

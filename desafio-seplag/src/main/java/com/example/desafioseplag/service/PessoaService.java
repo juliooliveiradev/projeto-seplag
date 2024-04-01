@@ -4,10 +4,13 @@ import com.example.desafioseplag.model.Pessoa;
 import com.example.desafioseplag.model.Status;
 import com.example.desafioseplag.repository.PessoaRepository;
 import com.example.desafioseplag.repository.StatusRepository;
+import com.example.desafioseplag.specification.PessoaSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,4 +68,10 @@ public class PessoaService {
     public void excluirPessoa(Long id) {
         pessoaRepository.deleteById(id);
     }
+
+    public List<Pessoa> filtrarPessoas(String nome, String sobrenome, String cpf, String statusDescricao, Date dataInicio, Date dataFim) {
+        Specification<Pessoa> specification = PessoaSpecification.filtrarPorAtributos(nome, sobrenome, cpf, statusDescricao, dataInicio, dataFim);
+        return pessoaRepository.findAll(specification);
+    }
+
 }
