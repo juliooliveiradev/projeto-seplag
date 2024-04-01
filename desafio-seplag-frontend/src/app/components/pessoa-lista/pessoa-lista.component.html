@@ -1,50 +1,69 @@
-<div class="list row">
+<div class="container-fluid" style="background-color: #003876; color: white; padding: 20px;">
+  <h2 style="text-align: center;">Pesquisa de Pessoas</h2>
+  <hr style="border-color: white;">
+  <div class="row justify-content-center">
     <div class="col-md-8">
-        <form [formGroup]="filtroForm" (ngSubmit)="filtrar()">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Nome" formControlName="nome">
-            <input type="text" class="form-control" placeholder="Sobrenome" formControlName="sobrenome">
-            <input type="text" class="form-control" placeholder="CPF" formControlName="cpf">
-            <select class="form-control" formControlName="statusDescricao">
+      <form [formGroup]="filtroForm" (ngSubmit)="filtrar()">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" class="form-control" id="sobrenome" formControlName="sobrenome" placeholder="Sobrenome">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="cpf">CPF</label>
+            <input type="text" class="form-control" id="cpf" formControlName="cpf" placeholder="CPF">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="statusDescricao">Status</label>
+            <select class="form-control" id="statusDescricao" formControlName="statusDescricao">
               <option value="">Selecione o Status</option>
               <option *ngFor="let status of statusOptions" [value]="status.descricao">{{ status.descricao }}</option>
             </select>
-            <input type="date" class="form-control" placeholder="Data de Início" formControlName="dataInicio">
-            <input type="date" class="form-control" placeholder="Data Fim" formControlName="dataFim">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
           </div>
-        </form>
-      </div>
-    <div class="col-md-6">
-      <h4>Tutorials List</h4>
-      <ul class="list-group">
-        @for (pessoa of pessoas; track pessoa.id; let i = $index) {
-        <li
-          class="list-group-item"
-          [class.active]="i == currentIndex"
-          (click)="setActivePessoa(pessoa, i)"
-        >
-          {{ pessoa.nome }}
-          {{ pessoa.sobrenome }}
-          {{ pessoa.cpf }}
-          {{ pessoa.status?.descricao }}
-          {{ pessoa.data_cadastro }}
-        </li>
-        }
-      </ul>
-  
-      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllPessoas()">
-        Remove All
-      </button>
-    </div>
-    <div class="col-md-6">
-      <app-pessoa-detalhes
-        [viewMode]="true"
-        [currentPessoa]="currentPessoa"
-      >
-      </app-pessoa-detalhes>
+          <div class="form-group col-md-4">
+            <label for="dataInicio">Data de Início</label>
+            <input type="date" class="form-control" id="dataInicio" formControlName="dataInicio">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="dataFim">Data Fim</label>
+            <input type="date" class="form-control" id="dataFim" formControlName="dataFim">
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-light">Pesquisar</button>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>
+
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Status</th>
+            <th scope="col">Data de Cadastro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pessoa of pessoas; let i = index" (click)="redirectToDetails(pessoa.id)" [class.table-active]="i == currentIndex">
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.sobrenome }}</td>
+            <td>{{ pessoa.cpf }}</td>
+            <td>{{ pessoa.status?.descricao }}</td>
+            <td>{{ pessoa.data_cadastro | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

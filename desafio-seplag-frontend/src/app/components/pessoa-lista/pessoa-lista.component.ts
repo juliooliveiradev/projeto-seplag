@@ -4,6 +4,7 @@ import { PessoaService } from '../../services/pessoa.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Status } from '../../models/status.model';
 import { StatusService } from '../../services/status.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pessoa-lista',
@@ -18,7 +19,7 @@ export class PessoaListaComponent implements OnInit {
   statusOptions: Status[] = [];
   
 
-  constructor(private pessoaService: PessoaService,private statusService: StatusService, private formBuilder: FormBuilder) { }
+  constructor(private pessoaService: PessoaService,private statusService: StatusService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -95,6 +96,15 @@ export class PessoaListaComponent implements OnInit {
       });
     } else {
       this.retrievePessoas(); // Se nenhum campo foi preenchido, recupera todas as pessoas
+    }
+  }
+
+  redirectToDetails(id: number | undefined): void {
+    if (id !== undefined) {
+      this.router.navigate(['/pessoas', id]);
+    } else {
+      // Lida com o cenário em que o ID da pessoa é undefined
+      console.error('ID da pessoa é undefined.');
     }
   }
   
